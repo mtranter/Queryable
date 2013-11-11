@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Queryable.Models
+namespace Queryable.Web.Models
 {
     public class Person
     {

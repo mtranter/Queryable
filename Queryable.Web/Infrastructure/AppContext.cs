@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using Queryable.Models;
+﻿using System.Data.Entity;
+using Queryable.Web.Models;
 
-namespace Queryable.Infrastructure
+namespace Queryable.Web.Infrastructure
 {
     public class AppContext : DbContext
     {
