@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Globalization;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -24,8 +26,9 @@ namespace Queryable.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            var repoType = typeof (IRepository<>);
-
+            var binder = new DateTimeModelBinder(CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern);
+            ModelBinders.Binders.Add(typeof(DateTime), binder);
+            ModelBinders.Binders.Add(typeof(DateTime?), binder);
 
             SetupContainer();
         }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Queryable.Models;
 using Queryable.Web.Models;
 
 namespace Queryable.Web.Controllers
@@ -30,20 +29,25 @@ namespace Queryable.Web.Controllers
         [HttpGet]
         public ActionResult SearchResults(PersonSearchModel searchModel)
         {
-            IEnumerable<Person> people = Enumerable.Empty<Person>();
-            if (ModelState.IsValid)
-            {
-                var query = new PersonSearchModelQueryAdapter(searchModel);
-                people = _personRepository.Query(query);
-            }
-
+            var query = new PersonSearchModelQueryAdapter(searchModel);
+            var people = _personRepository.Query(query);
             return View("Index", people);
+        }
+
+        [HttpPost]
+        public ActionResult DeletePerson(int id)
+        {
+            var person = _personRepository.Get(id);
+            _personRepository.Delete(person);
+            _personRepository.SaveChanges();
+
+            return Redirect("Index");
         }
 
         [HttpGet]
         public ActionResult Add()
         {
-            return View(new Person());
+            return View(new CreatePersonCommand());
         }
 
         [HttpPost]

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Queryable.Models;
 
 namespace Queryable.Web.Models
 {
@@ -34,7 +33,7 @@ namespace Queryable.Web.Models
 
             if (_searchModel.DateOfBirth.HasValue)
             {
-                predicate = predicate.And(m => m.DateOfBirth == _searchModel.DateOfBirth);
+                predicate = predicate.And(m => m.DateOfBirth == _searchModel.DateOfBirth.Value);
             }
 
             return predicate;

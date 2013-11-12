@@ -10,6 +10,7 @@
             <th>@Html.DisplayNameFor(m => m.First().FirstName)</th>
             <th>@Html.DisplayNameFor(m => m.First().LastName)</th>
             <th>@Html.DisplayNameFor(m => m.First().DateOfBirth)</th>
+            <th>Kill</th>
         </tr>
     </thead>
     <tbody>
@@ -18,11 +19,16 @@
             <tr>
                 <td>@person.FirstName</td>
                 <td>@person.LastName</td>
-                <td>@person.DateOfBirth</td>
+                <td>@person.DateOfBirth.ToShortDateString()</td>
+                <td>@using(Html.BeginForm("DeletePerson","Home", FormMethod.Post)){
+                        <input type="hidden" value="@person.Id" name="Id"/>
+                        <input type="submit" name="" value="Kill" class="btn btn-danger" />
+                    }
+                </td>
             </tr>
         }
     </tbody>
 </table>
 
-@Html.ActionLink("Search", "Search", null, new Dictionary<string, object>{{"class", "btn"}})
-@Html.ActionLink("Add", "Add", null, new Dictionary<string, object>{{"class", "btn"}})
+@Html.ActionLink("Search", "Search", null, new Dictionary<string, object>{{"class", "btn btn-primary"}})
+@Html.ActionLink("Add", "Add", null, new Dictionary<string, object>{{"class", "btn btn-default"}, {"role", "button"}})

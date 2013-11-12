@@ -1,23 +1,24 @@
 ﻿@{
     ViewBag.Title = "Search";
 }
-@model global::Queryable.Web.Models.Person
-<h2>Search</h2>
+@model global::Queryable.Web.Models.CreatePersonCommand
+<h2>Add Someone!</h2>
 
 
-@using (Html.BeginForm("Add", "Home", FormMethod.Post))
+@using (Html.BeginForm("Add", "Home", FormMethod.Post, new Dictionary<string, object>{{"role", "form"}}))
 {
-    <div>
+    <div class="form-group">
         @Html.LabelFor(m => m.FirstName)
-        @Html.TextBoxFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName, new Dictionary<string, object>{{"class", "form-control"}})
     </div>
-    <div>
+    <div class="form-group">
         @Html.LabelFor(m => m.LastName)
-        @Html.TextBoxFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName, new Dictionary<string, object>{{"class", "form-control"}})
     </div>
-    <div>
+    <div class="form-group">
         @Html.LabelFor(m => m.DateOfBirth)
-        @Html.TextBoxFor(m => m.DateOfBirth)
+        @Html.TextBoxFor(m => m.DateOfBirth, new Dictionary<string, object>{{"class", "form-control"}})
     </div>
-    <input type="submit" value="GO" class="btn"/>
+    <input type="submit" value="Add" class="btn pull-right"/>
+    @Html.ActionLink("Home", "Index", "Home", null, new {@class = "btn btn-default", role = "button"})
 }
