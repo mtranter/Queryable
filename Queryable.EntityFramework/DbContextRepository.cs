@@ -15,7 +15,7 @@ namespace Queryable.EntityFramework
             _context = context;
         }
 
-        public virtual TEntity Get(int id)
+        public virtual TEntity Get(object id)
         {
             return DbSet.Find(id);
         }

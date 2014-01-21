@@ -4,7 +4,7 @@ namespace Queryable
 {
     public interface IRepository<TEntity>
     {
-        TEntity Get(int id);
+        TEntity Get(object id);
         TEntity Create(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
